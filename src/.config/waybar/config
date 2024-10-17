@@ -1,0 +1,135 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/launcher", "cpu", "memory", "custom/media", "tray", "custom/updates","network"],
+    "modules-center": ["river/tags", "hyprland/workspaces"],
+    "modules-right": ["custom/wallpaper", "backlight", "pulseaudio", "clock", "battery", "custom/power"],
+    
+    "pulseaudio": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": " {volume}%",
+        "on-click": "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "format-icons": {
+            "default": ["", "", ""]
+        }
+    },
+
+    "hyprland/workspaces": {
+    "format": "{icon} ",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format-icons": {
+      "active": "",
+      "urgent": "",
+      "default": ""
+    }
+    },
+
+    "network": {
+        "tooltip": false,
+        "format-wifi": "  {essid}",
+        "format-ethernet": ""
+    },
+
+    "backlight": {
+        "tooltip": false,
+        "format": " {}%",
+        "interval": 1,
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5"
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    
+    "clock": {
+        "format": " {:%HH%M    %d/%m/%Y}",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }       
+    },
+
+    "cpu": {
+        "interval": 15,
+        "format": " {}%",
+        "max-length": 10
+    },
+    
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10
+    },
+    
+    "custom/media": {
+        "interval": 30,
+        "format": "{icon}",
+        "max-length": 20,
+        "format-icons": {
+            "default": " "
+        },
+        "on-click": "playerctl play-pause",
+	"on-click-right": "spotify-launcher"
+    },
+    
+    "custom/launcher": {
+        "format": " ",
+        "on-click": "wofi --conf $HOME/.config/wofi/config/config --style $HOME/.config/wofi/src/latte/style.css",
+        "on-click-right": "killall wofi"
+    },
+    
+    "custom/power": {
+        "format": " ",
+        "on-click": "exec shutdown now"
+    },
+    
+    "custom/updates": {
+        "format": "{} Update(s)",
+        "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 15,
+        "on-click": "alacritty -e yay -Syu && notify-send 'The system has been updated'"
+    },
+    
+    "custom/wallpaper": {
+        "format": " ",
+        "on-click": "dolphin"
+    }
+}

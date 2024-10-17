@@ -1,0 +1,32 @@
+# Alacritty.toml config file
+
+[window]
+
+opacity = 0.8
+
+padding.x = 10
+padding.y = 10
+
+decorations = "Full"
+decorations_theme_variant = "Light" # "Dark"
+
+
+[font]
+
+size = 13.0
+
+[font.bold]
+family = "Monaspace Neon"
+style = "Bold"
+
+[font.normal]
+family = "Monaspace Neon"
+style = "Regular"
+
+[font.bold_italic]
+family = "Monaspace Neon"
+style = "Bold Italic"
+
+[font.italic]
+family = "Monaspace Neon"
+style = "Italic"
